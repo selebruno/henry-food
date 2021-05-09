@@ -38,30 +38,6 @@ const { Recipe,Types } = sequelize.models;
 Recipe.belongsToMany(Types, {through:'RecipeType'})
 Types.belongsToMany(Recipe, {through:'RecipeType'})
 
-Recipe.create({
-  id:uuidv4(),
-  name: 'Tarta',
-  summary: 'Muy rico plato',
-  score: 4,
-  healthLevel: 3,
-  steps: 'otro dia'
-})
-Recipe.create({
-  id:uuidv4(),
-  name: 'milanga',
-  summary: 'Muy rico seee',
-  score: 5,
-  healthLevel: 1,
-  steps: 'otro dia'
-})
-Recipe.create({
-  id:uuidv4(),
-  name: 'milanesa',
-  summary: 'Muy FEO plato',
-  score: 1,
-  healthLevel: 3,
-  steps: 'otro dia'
-})
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

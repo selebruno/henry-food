@@ -1,29 +1,54 @@
 const { Router } = require('express');
+const { Sequelize } = require('sequelize');
 const router = Router();
 const { Recipe,Types } = require("../db");
 
 router.get('/',(req,res)=>{
-    Recipe.findAll().then((recipes) => res.send(recipes))
+    Recipe.findAll().then((recipes) => res.send(recipes))     //RUTA PARA OBTENER TODAS LAS RECETAS
 })
 
-router.get('/?name="..."', async (req,res) =>{
-    const recipes = Recipe.findAll({ limit: 9 },{
+
+//ruta del get a /?name='...'
+
+// router.get('/',  async (req,res) =>{
+// const nameQuery = req.query.name;
+// if (nameQuery) {
+//     let recetasName = await Recipe.findAll({limit:9},{
+//         where:{
+//             name = nameQuery
+//         }
+//     })
+//     recetasName.length ? res.send(recetasName) : res.status(404).send('No se encontraron coincidencias')
+// }
+
+// })
+
+    router.get('/',  async (req,res,next) =>{
+    const queryName = req.query.name.toLowerCase();
+    if(queryName){ 
+    Recipe.findAll({ limit: 9 },{
     where: {
-        'name': req.query.name
+        name: {
+            [Op.eq]:queryName,
+         include: Types
+        }
     }
     }) 
-    if (!recipes) return res.sendStatus(404).send('No se encontraron recetas adecuadas');
-    res.json(recipes)
+    .then(recetas => res.json(recetas))
+    .catch (error=> next(error)) 
+     }
      })
 
-     router.get('/{idReceta}', async (req,res) =>{
-        //  res.send(hola)
-        const { idReceta } = req.query.id
-        const recipe = await Recipe.findByPk(idReceta, {
+
+     //ruta del get a {idReceta}
+
+     router.get('/:idReceta',  (req,res) =>{
+        const id= req.params.idReceta
+        Recipe.findByPk(id, {
         include: Types
-         });
-        if(!recipe) return res.sendStatus(404);
-        res.json(recipe);
+         })
+         .then(recipe => res.json(recipe))
+         .catch( () => res.status(404).send('No se encontraron coincidencias'))
     });
 
 

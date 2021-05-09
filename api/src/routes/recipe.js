@@ -6,7 +6,7 @@ uuidv4();
 
 const { Recipe } = require ('../db.js')
 
-router.post("/", (req, res) => {
+router.post("/", (req, res) => {            //POST PARA CREAR NUEVAS RECETAS
     const receta = req.body;
   
     Recipe.create({
