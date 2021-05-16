@@ -1,0 +1,9 @@
+.creator{
+    background-Image: url('http://cdn.lowgif.com/full/74147ac521a65af6-gif-minestrone-fumante-gif-animata-cibo.gif');
+    width: 100vw;
+    height: 100vh;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}

@@ -1,0 +1,52 @@
+.p{
+    font-size: 25px;
+    
+
+ 
+}
+
+.boton{
+    color: rgb(0, 0, 0) ;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+	text-transform: uppercase;
+	text-decoration: none;
+	background: rgb(255, 179, 65);
+	padding: 15px;
+	border-radius: 5px;
+	display: inline-block;
+	border: none;
+	transition: all 0.4s ease 0s;
+}
+    
+.boton:hover {
+    cursor: pointer;
+	background: #ffa927;
+	letter-spacing: 1px;
+	-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+	-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+	box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+	transition: all 0.4s ease 0s;
+}
+
+.contenedor{
+    background-Image: url('https://wallpaperaccess.com/full/5393822.jpg');
+    width: 100vw;
+    height: 100vh;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    color: aliceblue;
+}
+
+.h1{
+    margin-top: 80px;
+    font-size: 60px;
+    color: rgb(255, 179, 65);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
