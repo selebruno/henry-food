@@ -125,6 +125,11 @@ figure:hover{
     box-shadow: 0 0 5pt 0.5pt #161616;
 }
 
+.btn:active{
+    background-color: rgb(255, 136, 0);
+    box-shadow: 1px 1px 1px 0px rgb(0, 0, 0);
+}
+
 .links{
     font-size: 20px;
     display: flex;

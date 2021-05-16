@@ -28,6 +28,11 @@
 	transition: all 0.4s ease 0s;
 }
 
+.boton:active{
+    background-color: rgb(255, 136, 0);
+    box-shadow: 1px 1px 1px 0px rgb(0, 0, 0);
+}
+
 .contenedor{
     background-Image: url('https://wallpaperaccess.com/full/5393822.jpg');
     width: 100vw;
