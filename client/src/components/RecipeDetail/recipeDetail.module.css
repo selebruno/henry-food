@@ -53,6 +53,10 @@ margin-top: 45px;
     transition: all 0.2s ease 0s;
 }
 
+.goBack:active{
+    background-color: rgba(0, 0, 0, 0.588);
+}
+
 
 .scores{
     display: inline-block;

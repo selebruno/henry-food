@@ -72,8 +72,8 @@ function reducer(state = initialState, action) {
                         }
                         case 'ORDER_BY_NAME':
                             let sortedArr = action.payload === 'asc'?
-                            sortAsc(state.recipesSearch, 'title'):
-                            sortDesc(state.recipesSearch,'title');
+                            sortAsc(state.recipesSearch, 'name'):
+                            sortDesc(state.recipesSearch,'name');
                             return{
                                 ...state,
                                 recipesSearch: sortedArr

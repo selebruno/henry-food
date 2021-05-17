@@ -91,7 +91,7 @@ return (
         </form>
         <div>
             <select className={s.select} onChange={(e) =>handleOrder(e)}>
-                <option value= '' disabled selected  >Sort by</option>
+                <option value= '' disabled selected>Sort by</option>
                 <option value='asc'>Alphabet - A-Z</option>
                 <option value='desc'>Alphabet - Z-A</option>
             </select>

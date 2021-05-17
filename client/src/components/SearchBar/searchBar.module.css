@@ -175,6 +175,9 @@ figure:hover{
     letter-spacing: 1px;
     transition: all 0.2s ease 0s;
 }
+.create:active{
+    background-color: rgba(0, 0, 0, 0.588);
+}
 
 .land{
     text-decoration: none;
@@ -189,6 +192,10 @@ figure:hover{
     font-size: 21px;
     letter-spacing: 1px;
     transition: all 0.2s ease 0s;
+}
+
+.land:active{
+    background-color: rgba(0, 0, 0, 0.588);
 }
 
 .input{

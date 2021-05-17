@@ -15,6 +15,8 @@
   .numbers{
     text-shadow: 2px 2px #000000;
     font-size: 22px;
+    background-color: rgba(0, 0, 0, 0.432);
+    border-radius: 0.5px;
     color: white;
     padding: 15px;
     font-weight: 700;   
