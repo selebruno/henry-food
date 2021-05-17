@@ -1,0 +1,81 @@
+.container{
+    background-Image: url('https://mk0amnacademyicmx15b.kinstacdn.com/wp-content/uploads/2017/03/food-pot-kitchen-cooking-background-1.jpg');
+    min-width: 100vw;
+    min-height: 100vh;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: auto;
+}
+
+.title{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+color: whitesmoke;
+text-shadow: black;
+padding: 10px;
+margin-top: 45px;
+}
+.info{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+    padding: 20px;
+    margin-bottom: 40px;
+    padding: 15px;
+    
+}
+
+.steps:link{
+    color:rgb(255, 217, 0);
+}
+
+.goBack{
+    text-decoration: none;
+    position: absolute;
+    top: 15px;
+    font-size: 20px;
+    left: 15px;
+    color: rgb(255, 179, 65);
+    padding: 8px;
+    background-color: rgba(0, 0, 0, 0.356);
+    border-radius: 7px;
+    
+}
+
+.goBack:hover{
+    font-size: 21px;
+    letter-spacing: 1px;
+    transition: all 0.2s ease 0s;
+}
+
+
+.scores{
+    display: inline-block;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.img{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+    width: 300px;
+}
+
+.diets{
+    display: inline-block;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    align-items: center;  
+}

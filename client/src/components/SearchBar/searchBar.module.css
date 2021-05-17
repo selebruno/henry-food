@@ -1,11 +1,13 @@
+
 .bar{
     background-Image: url('https://i.pinimg.com/originals/f3/d5/d7/f3d5d72ebf4f889d9dd7e46d64a98f0d.jpg');
-    width: 100vw;
-    height: 100vh;
-    background-position: center center;
+    background-position: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-    overflow: hidden;
+    overflow: auto;
+    min-height: 100vh;
+    min-width: 100vh;
+    padding: 20px;
 }
 
 .recetas{
@@ -42,13 +44,13 @@ figure {
 img, figcaption {
     display: table-cell;
     vertical-align: top;
-    width: 120px;
+    width: 130px;
     height: 120px;
     border-radius: 10px;
 }
 
 figcaption {
-    background-color: rgba(0, 0, 0, 0.582);
+    background-color: rgba(0, 0, 0, 0.37);
     padding-left: 4px;
     text-decoration: none;
     color: whitesmoke;
@@ -69,7 +71,7 @@ figure:hover{
 .loader{
     position: absolute;
     left: 43%;
-    top: 7%;
+    top: 10%;
 }
 
 .logo{
@@ -135,7 +137,28 @@ figure:hover{
     display: flex;
     flex-direction: row;
     position: absolute;
-    top: 20px; right: 20px; 
+    top: 20px; left: 20px; 
+}
+
+.select{
+    position: absolute;
+    top: 20px; right:20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 6px;
+    cursor: pointer;
+    background:rgb(255, 179, 65);
+    border-radius: 5px;
+	display: inline-block;
+	border: none;
+}
+.select:hover {
+	background: #ffa927;
+	letter-spacing: 0.5px;
+	-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+	-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+	box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+	transition: all 0.2s ease 0s;
+    box-shadow: 0 0 5pt 0.5pt #161616;
 }
 
 .create{

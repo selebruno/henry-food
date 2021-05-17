@@ -6,16 +6,22 @@ import LandingPage from './components/LandingPage/LandingPage';
 import RecipeCreate from './components/RecipeCreate/RecipeCreate';
 import RecipeDetail from './components/RecipeDetail/RecipeDetail';
 import SearchBar from './components/SearchBar/SearchBar'
+import {AnimatePresence} from 'framer-motion'
+
 
 
 function App() {
   return (
+  
    <Fragment>
+     <AnimatePresence>
      <Route exact path= '/' component={LandingPage}/>
      <Route  path= '/home' component={SearchBar}/>
      <Route  path= '/post' component={RecipeCreate}/>
      <Route  path= '/recipe/:id' component={RecipeDetail}/>
+     </AnimatePresence>
    </Fragment>
+
   );
 }
 

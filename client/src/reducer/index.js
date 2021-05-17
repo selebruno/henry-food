@@ -13,7 +13,7 @@ const initialState = {
     //filteredDiet:[],
     recipeById: {}, //receta por id
     filteredRecipes: [],
-    orderedRecipes: [],
+    //orderedRecipes: [],
     filterBy: 'All',
     loading: false
 
@@ -58,7 +58,7 @@ function reducer(state = initialState, action) {
                         ...state,
                         loading: false
                     }
-                    case "RESET":
+                    case 'RESET':
                         return {
                             ...state,
                             recipesSearch: [], 
@@ -70,6 +70,14 @@ function reducer(state = initialState, action) {
                                 filterBy: 'All',
                                 loading: false
                         }
+                        case 'ORDER_BY_NAME':
+                            let sortedArr = action.payload === 'asc'?
+                            sortAsc(state.recipesSearch, 'title'):
+                            sortDesc(state.recipesSearch,'title');
+                            return{
+                                ...state,
+                                recipesSearch: sortedArr
+                            }
     }
     return state;
 }

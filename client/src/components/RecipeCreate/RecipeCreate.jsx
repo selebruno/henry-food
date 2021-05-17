@@ -2,6 +2,8 @@ import React, {useState,useEffect} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {getTypes,postRecipe} from '../../actions/index'
+import s from './recipeCreate.module.css'
+import {motion} from 'framer-motion';
 
 
 
@@ -71,7 +73,24 @@ function handleChange (e){
         }
       }, [])
         return (
-          <div>
+          <motion.div
+          initial='hidden'
+          animate='visible'
+          variants={{
+          hidden: {
+              scale: .8,
+              opacity: -1
+          },
+          visible: {
+              scale: 1,
+              opacity: 1,
+              transition:{
+                  delay: .002
+              }
+          }
+          }}
+          >
+          <div className={s.container}>
             <div>Post your own Recipe</div>
           <form onSubmit={(e)=>handleSubmit(e)}>
             <Link to='/home'> <button> X </button> </Link>
@@ -117,6 +136,7 @@ function handleChange (e){
           <input type='submit'value='Submit'id='submitbutton'/>
           </form>
         </div>
+        </motion.div>
         )
 }
 
