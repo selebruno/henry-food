@@ -243,6 +243,10 @@ figure:hover{
     box-shadow: 0 0 5pt 0.5pt #161616;
 }
 
+.select:active{
+    background-color: brown;
+}
+
 .filter{
     font-size: 13px;
     position: absolute;
