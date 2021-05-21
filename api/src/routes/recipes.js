@@ -14,7 +14,7 @@ const infoApi = async () => {
         const infoNeeded= await allApiInfo.data.results.map((recipe) => {           
             return {
                 name: recipe.title,
-                type: recipe.diets.map((diet)=>{return {name:diet}}),
+                types: recipe.diets.map((diet)=>{return {title:diet}}),
                 healthLevel: recipe.healthScore,
                 summary: recipe.summary,
                 image: recipe.image,
@@ -61,8 +61,11 @@ const infoApi = async () => {
                 },
                 include: {
                     model: Types,
+                    attributes:['title'],
+                    through:{
+                        attributes: []
+                    }
                 },
-                limit:9
 
             });
             //CREA LA PROP RESULTS SI ENCONTRO ALGO
@@ -112,13 +115,17 @@ const infoApi = async () => {
         infoPorId = await Recipe.findByPk(id, {
         include:{
             model:Types,
+            attributes:['title'],
+            through:{
+                attributes:[]
+            }
         } 
          })
         }else{
         const idApi = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`);
         const datosApi = idApi.data;
            infoPorId ={
-            title: datosApi.title,
+            name: datosApi.title,
             summary: datosApi.summary,
             score: datosApi.spoonacularScore,
             healthLevel: datosApi.healthScore,

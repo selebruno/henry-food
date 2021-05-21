@@ -1,25 +1,60 @@
 const { Router } = require('express');
-// const { UUIDV4 } = require('sequelize/types');
 const router = Router();
 const { v4: uuidv4 } = require('uuid');
 uuidv4();
+const { Recipe,Types } = require ('../db.js')
+const { Sequelize }= require('sequelize');
 
-const { Recipe } = require ('../db.js')
 
-router.post("/", (req, res) => {            //POST PARA CREAR NUEVAS RECETAS
-    const receta = req.body;
-  
-    Recipe.create({
-      ...receta,
-      id: uuidv4()
-    })
-      .then(recipe => {
-        res.status(200).send(recipe)
+router.post("/", async (req, res) => {            //POST PARA CREAR NUEVAS RECETAS
+    let {
+        name,
+        score,
+        summary,
+        steps,
+        healthLevel,
+        types,
+    } = req.body;
+    
+      let recipeCreated = await Recipe.create({
+        name,
+        score,
+        summary,
+        steps,
+        healthLevel,
+        id: uuidv4()
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      if (!Array.isArray(types)) {
+        types = [types];
+    };
+    
+       //encuentro la data que coincide con la requerida por req.body
+    const typesDb = await Types.findAll({
+      where: {
+        title: {
+          [Sequelize.Op.in]: types//operador que el nombre coincida con el array
+        },
+      },
   });
+  
+  //las seteo
+  await recipeCreated.setTypes(typesDb);
+  res.status(200).json(recipeCreated);
+})
+
+    
+  
+  //   Recipe.create({
+  //     ...receta,
+  //     id: uuidv4()
+  //   })
+  //     .then(recipe => {
+  //       res.status(200).send(recipe)
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // });
 
 
 
