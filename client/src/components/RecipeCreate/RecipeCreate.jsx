@@ -28,7 +28,7 @@ export function RecipeCreate(props){
 
     })
 
-    const [errors,setErrors] = useState({});
+    const [setErrors] = useState({});
     const [render,setRender] = useState('');
 
 
