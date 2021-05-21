@@ -7,3 +7,238 @@
     background-size: cover;
     overflow: auto;
 }
+
+.title{
+    font-variant: small-caps;
+    font-size: 35px;
+    background:rgba(245, 245, 245, 0.171);
+    display: flex;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgb(0, 0, 0);
+    padding: 7px;
+     }
+
+    .form{
+        background: rgba(245, 245, 245, 0.281);
+        border-radius: 10px;
+        max-width: 500px;
+        width: 100%;
+        margin:0 auto;
+        position: relative;
+        background-size:auto;
+        padding:10px;
+        display: flex;
+        flex-direction: column;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .titulo{
+        font-size: 19px;
+        margin-right: 7px;
+        padding-right: 5px;
+        padding-left: 5px;
+        color: rgb(0, 0, 0);
+        border-radius: 3px;
+    }
+
+    .inputUno{
+        padding: 6px;
+        border: none;
+        border-radius: 5px;
+        cursor:text;
+    }
+
+    .alignUno{
+    padding:6px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .summary{
+        font-size: 19px;
+        margin-right: 7px;
+        padding-right: 5px;
+        padding-left: 5px;
+        color: rgb(0, 0, 0);
+        border-radius: 3px;
+    }
+
+    .inputDos{
+        padding: 6px;
+        border: none;
+        border-radius: 5px;
+        cursor:text;
+    }
+
+    .alignDos{
+    padding:6px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .score{
+        font-size: 19px;
+        margin-right: 7px;
+        padding-right: 5px;
+        padding-left: 5px;
+        color: rgb(0, 0, 0);
+        border-radius: 3px;
+    }
+
+    .inputTres{
+        padding: 6px;
+        border: none;
+        border-radius: 5px;
+        cursor:text;
+    }
+
+    .alignTres{
+    padding:6px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .healthScore{
+        font-size: 19px;
+        margin-right: 7px;
+        padding-right: 5px;
+        padding-left: 5px;
+        color: rgb(0, 0, 0);
+        border-radius: 3px;
+    }
+
+    .inputCuatro{
+        padding: 6px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        cursor:text;
+    }
+    
+
+    .alignCuatro{
+    padding:6px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    }
+
+
+    .instructions{
+        font-size: 19px;
+        margin-right: 7px;
+        padding-right: 5px;
+        padding-left: 5px;
+        color: rgb(0, 0, 0);
+        border-radius: 3px;
+    }
+
+    .inputCinco{
+        padding: 6px;
+        border: none;
+        border-radius: 5px;
+        cursor:text;
+    }
+
+    .alignCinco{
+    padding:6px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .errorUno{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .diets{
+            font-size: 19px;
+            padding-right: 5px;
+            padding-left: 5px;
+            color: rgb(0, 0, 0);
+            border-radius: 3px;
+        
+    }
+.types{
+    display: inline-block;
+    text-align: center;
+    justify-content: center;
+    padding: 2px;
+}
+
+.each{
+    cursor: pointer;
+}
+    .goBack{
+        text-decoration: none;
+        position: absolute;
+        top: 31px;
+        font-size: 20px;
+        left: 20px;
+        color: rgb(255, 179, 65);
+        padding: 8px;
+        background-color: rgba(0, 0, 0, 0.356);
+        border-radius: 7px;
+        border:none;
+        
+    }
+    
+    .goBack:hover{
+        font-size: 23px;
+        cursor: pointer;
+        letter-spacing: 1px;
+        transition: all 0.2s ease 0s;
+    }
+    
+    .goBack:active{
+        background-color: rgba(0, 0, 0, 0.588);
+    }
+
+    .boton{
+        margin-top: 16px;
+        font-size: 15px;
+        color: rgb(0, 0, 0) ;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-transform: uppercase;
+        text-decoration: none;
+        background: rgb(255, 179, 65);
+        padding: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        border-radius: 5px;
+        display: inline-block;
+        border: none;
+        transition: all 0.2s ease 0s;
+    }
+        
+    .boton:hover {
+        cursor: pointer;
+        background: #ec8e00;
+        letter-spacing: 1px;
+        -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+        -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+        box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+        transition: all 0.2s ease 0s;
+        box-shadow: 0 0 5pt 0.5pt #161616;
+    }
+
+    .boton:active{
+        background-color: rgb(255, 102, 0);
+    }

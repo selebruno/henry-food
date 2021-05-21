@@ -9,12 +9,8 @@ import {
 const initialState = {
     recipesSearch: [], //recetas por nombre 
     types: [],
-    postedRecipe: [],
-    //filteredDiet:[],
-    recipeById: {}, //receta por id
-    filteredRecipes: [],
-    //orderedRecipes: [],
-    filterBy: 'All',
+    recipeById: [], //receta por id
+    filtered:' ',
     loading: false
 
 
@@ -43,11 +39,14 @@ function reducer(state = initialState, action) {
                 ...state,
                 submit: 'Recipe created Succesfully'
             }
-            case 'FILTER_DIET':
+             case 'FILTER_DIET':
                 return {
                     ...state,
-                    filteredRecipes: filterBy(state.filteredRecipes, action.payload),
-                };
+                    filtered:action.payload==='reset'? ' ': state.filtered+' | '+action.payload,
+                    recipesSearch:filterBy(state.recipesSearch, action.payload),
+                    };
+                  
+
             case 'SHOW_LOADER':
                 return {
                     ...state,
@@ -61,23 +60,35 @@ function reducer(state = initialState, action) {
                     case 'RESET':
                         return {
                             ...state,
-                            recipesSearch: [], 
+                            recipesSearch: [],
                                 types: [],
                                 postedRecipe: [],
-                                recipeById: {}, 
+                                recipeById: {},
                                 filteredRecipes: [],
                                 orderedRecipes: [],
                                 filterBy: 'All',
                                 loading: false
                         }
                         case 'ORDER_BY_NAME':
-                            let sortedArr = action.payload === 'asc'?
-                            sortAsc(state.recipesSearch, 'name'):
-                            sortDesc(state.recipesSearch,'name');
-                            return{
+                            let sortedArr = action.payload === 'asc' ?
+                                sortAsc(state.recipesSearch, 'name') :
+                                sortDesc(state.recipesSearch, 'name');
+                            return {
                                 ...state,
                                 recipesSearch: sortedArr
                             }
+                            case 'ORDER_BY_SCORE':
+                                return {
+                                    ...state,
+                                    recipesSearch: state.recipesSearch.sort(function (a, b) {
+                                        if (action.payload === 'Lowest') {
+                                            return a.score - b.score;
+                                        }
+                                        if (action.payload === 'Highest') {
+                                            return b.score - a.score;
+                                        }
+                                    }),
+                                }
     }
     return state;
 }

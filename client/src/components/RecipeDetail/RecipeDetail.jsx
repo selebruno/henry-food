@@ -7,9 +7,9 @@ import {motion} from 'framer-motion'
 
 function RecipeDetail(props){
 
-    function handleReset(){
-        props.resetAll()
-    } 
+    // function handleReset(){
+    //     props.resetAll()
+    // } 
     
     return(
         <motion.div
@@ -30,9 +30,9 @@ function RecipeDetail(props){
         }}
         >
         <div className={s.container}>
-            <Link to= '/home' className={s.goBack} onClick={e =>handleReset(e)}> Go Back 
+            <Link to= '/home' className={s.goBack}> Go Back 
             </Link>
-        <h1 className={s.title}>{props.recipe.title}</h1>
+        <h1 className={s.title}>{props.recipe.name}</h1>
         <div className={s.info}>
         {props.recipe.image? <img  className={s.img} src={props.recipe.image}></img>:
         <img src='https://i0.wp.com/www.eatthis.com/wp-content/uploads/2020/04/woman-cooking-healthy-food-in-kitchen.jpg?fit=1200%2C879&ssl=1'></img>}
@@ -48,7 +48,7 @@ function RecipeDetail(props){
         </div>
         <div  className={s.diets}>
         Diets: {props.recipe.types && props.recipe.types.map((type) =>(
-        type.name?<div>{type.name}</div>
+        type.title?<div>{type.title}</div>
         :<div>{type}</div>))}
         </div>
         </div>

@@ -1,12 +1,4 @@
-// import axios from 'axios';
-// export const GET_RECIPES_BY_NAME = 'GET_RECIPES_BY_NAME'
-// export const GET_TYPES = 'GET_TYPES'
-// export const GET_RECIPE_BY_ID = 'GET_RECIPE_BY_ID'
-// export const ORDER_BY_NAME = 'ORDER_BY_NAME'
-// export const ORDER_BY_SCORE = 'ORDER_BY_SCORE'
-// export const FILTER_DIET= 'FILTER_DIET'
-// export const POST_RECIPE = 'POST_RECIPE'
-// export const RESET = 'RESET'
+
 
 
 export function getRecipesByName(name) {      //accion que me trae las recetas por nombre
@@ -73,12 +65,12 @@ export const resetAll = () => {
     }
 }
 
-export function filterDiet(payload) {            //accion que me filtra por dieta
-    return {
-        type: 'FILTER_DIET',
-        payload
-    }
-}
+export function filterDiet(payload) {
+  return { 
+      type: 'FILTER_DIET', 
+      payload: payload,
+  };
+};
 export function orderByScore(payload) {         //accion que ordena por puntaje las recetas
     return {
         type: 'ORDER_BY_SCORE',

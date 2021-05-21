@@ -13,8 +13,8 @@ export default function Paged ({recipesPerPage, totalRecipes,paged}) {
 
     
     return(
-        <nav className={s.container}>
-            <ul>
+        <nav>
+            <ul className={s.container}>
                 {pageNumbers &&
                     pageNumbers.map(number => (
                         <li className={s.paged} key={number}> 

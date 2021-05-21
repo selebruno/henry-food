@@ -1,21 +1,19 @@
 import React, {useState,useEffect} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {getTypes,postRecipe} from '../../actions/index'
+import {getTypes,postRecipe,resetAll} from '../../actions/index'
 import s from './recipeCreate.module.css'
 import {motion} from 'framer-motion';
 
 
 
 export function validate(input){   //hago la validacion de los scores
-    let errors = {};
-    if (input.spoonacularScore>100  || input.spoonacularScore<0){
-        errors.spoonacularScore = 'Please insert a valid score';
+    if (input.score>100  || input.score<0){
+        alert('Please insert a valid score');
     }
-    if(!input.healthScore>100 ||input.healthScore<0){
-        errors.healthScore = 'Please insert a valid Health level'
+    if(!input.healthLevel>100 ||input.healthLevel<0){
+       alert('Please insert a valid Health level')
     }
-    return errors;
 };
 
 
@@ -45,18 +43,18 @@ function handleChange (e){
     })
     }
 
-    const handleCheck = function(e){
+    function handleCheck (e){
         if(e.target.checked){
           setInput({...input, types: [...input.types,e.target.value]});
         }else{
-          setInput({...input, types: input.diets.filter((diet)=>diet!==e.target.value)})
+          setInput({...input, types: input.types.filter((diet)=>diet!==e.target.value)})
         };
       };
     
-      const handleSubmit = function(e){
+      function handleSubmit (e){
         e.preventDefault();
         props.postRecipe(input)
-        setRender('Your recipe was created!')
+        setRender('Your recipe was created')
         setInput({
           name: ' ',
           summary: ' ',
@@ -66,9 +64,13 @@ function handleChange (e){
           types: [],
         })
       }
+
+      function handleReset(){
+        props.resetAll()
+    } 
     
       useEffect(() => {
-        getTypes()
+        props.getTypes()
         return () => {
         }
       }, [])
@@ -91,49 +93,77 @@ function handleChange (e){
           }}
           >
           <div className={s.container}>
-            <div>Post your own Recipe</div>
-          <form onSubmit={(e)=>handleSubmit(e)}>
-            <Link to='/home'> <button> X </button> </Link>
-          <div>
-            <label>Title:</label>
-            <input type="text" name="title" onChange={handleChange} value={input.name}/>
-          </div>
-          <div>
-            <label>Summary:</label>
-            <input autoComplete="off"
-              type="text" name="summary" onChange={handleChange} value={input.summary}/>
-          </div>
-          <div>
-            <label>Score:</label>
+             <Link to='/home'> <button className={s.goBack} onClick={e => handleReset(e)}>Go Back </button> </Link>
+            <h1 className={s.title}>Post your own Recipe!</h1>
+          <form className={s.form} 
+           onSubmit={(e)=>handleSubmit(e)}>
+          <div className={s.alignUno}>
+            <label className={s.titulo}>Title:</label>
             <input 
-              type="number" name="spoonacularScore" onChange={handleChange} value={input.score}/>
-            {errors.spoonacularScore && (
-            <p>{errors.spoonacularScore}</p>
-            )}
+            className={s.inputUno} 
+            type="text" 
+            autocomplete='off' 
+            name="name" 
+            onChange={handleChange} 
+            value={input.name}/>
           </div>
-          <div>
-            <label>healthScore:</label>
+          <div className={s.alignDos}>
+            <label className={s.summary}>Summary:</label>
+            <input 
+            className={s.inputDos} 
+            autoComplete="off"
+            type="text" 
+            name="summary" 
+            onChange={handleChange} 
+            value={input.summary}/>
+          </div>
+          <div className={s.alignTres}>
+            <label className={s.score}>Score:</label>
+            <input 
+              className={s.inputTres}
+              type="number" 
+              name="score"
+              onChange={handleChange} 
+              value={input.score}/>
+          </div>
+          <div className={s.alignCuatro}>
+            <label className={s.healthScore}>Health Score:</label>
             <input
-              type="number" name="healthScore" onChange={handleChange} value={input.healthLevel}/>
-              {errors.healthScore && (
-              <p>{errors.healthScore}</p>
-            )}
+              className={s.inputCuatro}
+              type="number" 
+              name="healthLevel" 
+              onChange={handleChange} 
+              value={input.healthLevel}/>
           </div>
-          <div>
-            <label>Instructions:</label>
+          <div className={s.alignCinco}>
+            <label className={s.instructions}>Instructions:</label>
             <textarea 
-              type="text" name="instructions" onChange={handleChange} value={input.steps}/>
+             className={s.inputCinco}
+              type="text" 
+              name="steps" 
+              onChange={handleChange} 
+              value={input.steps}/>
           </div>
-          <p>
+          <p className={s.diets}>
             Diets:
+            <br/>
             {props.types.length>0 && props.types.map((type)=>(
-              <label><input type="checkbox" name={type.name} value={type.name} onChange={(e)=>handleCheck(e)}/>{type.name}</label>
+              <label className={s.types}><input
+              className={s.each} 
+              type="checkbox" 
+              name={type.title} 
+              value={type.title} 
+              onChange={(e)=>handleCheck(e)}/>
+              {type.title.charAt(0).toUpperCase()+ type.title.slice(1)}</label>
             ))}
           </p>
           {render[0] &&
           <div id='recipecreated'>{render}</div>
           }
-          <input type='submit'value='Submit'id='submitbutton'/>
+          <input 
+          className={s.boton} 
+          type='submit'
+          value='Submit'/>
           </form>
         </div>
         </motion.div>
@@ -151,8 +181,9 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
     return{
-        types: ()=>dispatch (getTypes()),
-        postRecipe: (el)=> dispatch(postRecipe(el))
+        getTypes: ()=>dispatch (getTypes()),
+        postRecipe: (el)=> dispatch(postRecipe(el)),
+        resetAll:()=> dispatch(resetAll())
     }
 }
 

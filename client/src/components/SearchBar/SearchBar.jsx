@@ -1,11 +1,12 @@
- import React, {useState} from 'react';
+ import React, {useState,useEffect} from 'react';
  import {connect} from 'react-redux';
  import {Link} from 'react-router-dom';
- import {getRecipesByName,orderByName, getTypes,showLoader,hideLoader,resetAll,getRecipeById} from '../../actions'
+ import {getRecipesByName,orderByName,orderByScore, getTypes,showLoader,hideLoader,resetAll,getRecipeById,filterDiet} from '../../actions'
  import PageLoader from './PageLoader'
  import Paged from '../Paged/Paged'
  import s from './searchBar.module.css'
  import {motion} from 'framer-motion'
+
 
 
 
@@ -29,11 +30,10 @@ function handleSubmit(e){
 
     if(input.name){
         props.getRecipesByName(input.name)
-        props.getTypes()
+        // props.filterDiet('reset')
     }else{
         alert('You must enter a valid word')
     }
-    setInput('');
 }
 
 function updateProfile(){
@@ -47,20 +47,55 @@ function handleReset(){
     props.resetAll()
 } 
 
-const handleOrder = (e) =>{
+const handleClick = (string, e) =>{
     e.preventDefault();
-    props.orderByName(e.target.value);
     setCurrentPage(1);
+    props.filterDiet(string);
   };
 
+
+
+  
+
+ function handleExit(e){
+  e.preventDefault();
+  if(input.name){
+    props.getRecipesByName(input.name)
+    props.filterDiet('reset');
+}else{
+    alert('No recipes searched')
+}
+}
+
+ 
+
+function handleOrder (e){
+    e.preventDefault();
+    e.target.value === 'asc' || e.target.value==='desc'?
+    props.orderByName(e.target.value):
+    props.orderByScore(e.target.value) 
+    setCurrentPage(1);
+    setRender(`Ordered ${e.target.value}`)
+  };
+
+
+const [render, setRender]= useState('');  
 const [currentPage,setCurrentPage] = useState(1);
 const [recipesPerPage,setRecipesPerPage]= useState(9);
 const indexOfLastRecipe = currentPage * recipesPerPage; //9
 const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage; //0
-const currentRecipes = props.recipes && props.recipes.slice(indexOfFirstRecipe,indexOfLastRecipe)
+ const currentRecipes = props.recipes && props.recipes.slice(indexOfFirstRecipe,indexOfLastRecipe)
 const paged = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+  useEffect(() => {
+    props.getTypes()
+    return () => {
+    }
+  }, [])
+
+
 
 return (
     <motion.div
@@ -89,12 +124,32 @@ return (
             onChange={e=> handleChange(e)} />
             <button className={s.btn} type= 'submit' onClick={updateProfile}>Search</button>
         </form>
-        <div>
-            <select className={s.select} onChange={(e) =>handleOrder(e)}>
+        <div > 
+        <div className={s.filterBy}>Filter by:</div>
+        <button className={s.all} onClick={e => handleExit(e)}>All</button>
+        <div className={s.buttons}>
+
+{props.types && props.types.map((diet) =>(
+  <button className={s.dieta}  onClick={(e)=>handleClick(diet.title, e)}>{diet.title.charAt(0).toUpperCase()+ diet.title.slice(1)}</button>
+))
+}
+
+</div>
+
+        {/* <select  className={s.filter} onChange={(e) => handleFilter(e)}>
+          <option default>All</option>
+          {props.types.map((cat) => (
+            <option value={cat.title}>{cat.title}</option>
+          ))}
+        </select> */}
+      
+                <select className={s.select} onChange={(e) =>handleOrder(e)}>
                 <option value= '' disabled selected>Sort by</option>
                 <option value='asc'>Alphabet - A-Z</option>
                 <option value='desc'>Alphabet - Z-A</option>
-            </select>
+                <option value='Highest'>Score - Highest to lowest</option>
+                <option value='Lowest'>Score - Lowest to highest</option>
+                </select>
         </div>
         <span className={s.links}>
             <Link to= {'/post'} className={s.create}>Create Recipe</Link>
@@ -112,8 +167,15 @@ return (
                     <div className={s.recipeList}>
                         <Link to = {`/recipe/${el.id}`} onClick={()=>props.getRecipeById(el.id)}>
                             <figure className={s.figure}>
-                        <img className={s.img} title={el.name} src={el.image}></img>
-                        <figcaption className={s.figcaption}>{el.name}</figcaption>
+                       {el.image ? <img className={s.img} title={el.name} src={el.image}></img> : <img className={s.img} src='https://media.istockphoto.com/photos/vintage-cookbook-with-spices-and-herbs-on-rustic-wooden-background-picture-id1161153224?k=6&m=1161153224&s=612x612&w=0&h=vBK5KfbjpuBHE8XQQEbOXuyjYWLDYEKmJt07f1KgL5k=' ></img> }
+                        <figcaption className={s.figcaption}>
+                            {el.name}
+                            <br/>
+                            <div>
+                            Diets:   
+                        {el.types && el.types.map((diet) => <div >{diet.title}</div>)}
+                            </div>
+                            </figcaption>
                         </figure>   
                         </Link>
                          </div>
@@ -136,7 +198,9 @@ return (
 
 function mapStateToProps(state){
     return {
+        types: state.types,
         recipes: state.recipesSearch,
+        filtered: state.filtered,
     }
 }
 
@@ -147,8 +211,10 @@ function mapDispatchToProps(dispatch){
         showLoader: () => dispatch(showLoader()),
         hideLoader: () => dispatch(hideLoader()),
         resetAll: () => dispatch(resetAll()),
-        orderByName: () => dispatch(orderByName()),
-        getRecipeById: (id) => dispatch(getRecipeById(id))
+        orderByName: (string) => dispatch(orderByName(string)),
+        orderByScore: (string) => dispatch (orderByScore(string)),
+        getRecipeById: (id) => dispatch(getRecipeById(id)),
+        filterDiet:(string)=> dispatch(filterDiet(string))
 
     }
 }

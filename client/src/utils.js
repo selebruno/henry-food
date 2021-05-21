@@ -26,9 +26,9 @@ export function sortDesc(arr, field) {
 export function filterBy(arr, field) {
     let filteredArr=[]
     for(let i=0;i<arr.length;i++){
-        for(let j=0;j<arr[i].diets.length;j++){
-            if(arr[i].diets[j].name.includes(field)){filteredArr.push(arr[i])}
+        for(let j=0;j<arr[i].types.length;j++){
+            if(arr[i].types[j].title.includes(field)){filteredArr.push(arr[i])}
         }
     }
     return filteredArr;
-};
+    };

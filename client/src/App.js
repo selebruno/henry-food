@@ -5,8 +5,8 @@ import React from 'react';
 import LandingPage from './components/LandingPage/LandingPage';
 import RecipeCreate from './components/RecipeCreate/RecipeCreate';
 import RecipeDetail from './components/RecipeDetail/RecipeDetail';
-import SearchBar from './components/SearchBar/SearchBar'
 import {AnimatePresence} from 'framer-motion'
+import SearchBar from './components/SearchBar/SearchBar';
 
 
 
