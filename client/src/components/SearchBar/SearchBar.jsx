@@ -1,11 +1,13 @@
  import React, {useState,useEffect} from 'react';
  import {connect} from 'react-redux';
  import {Link} from 'react-router-dom';
- import {getRecipesByName,orderByName,orderByScore, getTypes,showLoader,hideLoader,resetAll,getRecipeById,filterDiet} from '../../actions'
+ import {getRecipesByName,orderByName,orderByScore, getTypes,showLoader,hideLoader,resetAll,getRecipeById} from '../../actions'
  import PageLoader from './PageLoader'
  import Paged from '../Paged/Paged'
  import s from './searchBar.module.css'
  import {motion} from 'framer-motion'
+ import Filter from '../Filters/Filters'
+ import henry from '../../HenryFood.jpeg'
 
 
 
@@ -30,10 +32,12 @@ function handleSubmit(e){
 
     if(input.name){
         props.getRecipesByName(input.name)
-        // props.filterDiet('reset')
     }else{
         alert('You must enter a valid word')
     }
+    setInput({
+        name:''
+    })
 }
 
 function updateProfile(){
@@ -47,26 +51,6 @@ function handleReset(){
     props.resetAll()
 } 
 
-const handleClick = (string, e) =>{
-    e.preventDefault();
-    setCurrentPage(1);
-    props.filterDiet(string);
-  };
-
-
-
-  
-
- function handleExit(e){
-  e.preventDefault();
-  if(input.name){
-    props.getRecipesByName(input.name)
-    props.filterDiet('reset');
-}else{
-    alert('No recipes searched')
-}
-}
-
  
 
 function handleOrder (e){
@@ -78,14 +62,20 @@ function handleOrder (e){
     setRender(`Ordered ${e.target.value}`)
   };
 
+  let allRecipes;
+
+  props.filterBy === "All" 
+    ? (allRecipes = props.recipes.slice())
+    : (allRecipes = props.filteredRecipes.slice());
 
 const [render, setRender]= useState('');  
 const [currentPage,setCurrentPage] = useState(1);
 const [recipesPerPage,setRecipesPerPage]= useState(9);
 const indexOfLastRecipe = currentPage * recipesPerPage; //9
 const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage; //0
- const currentRecipes = props.recipes && props.recipes.slice(indexOfFirstRecipe,indexOfLastRecipe)
-const paged = (pageNumber) => {
+const currentRecipes = allRecipes.slice(indexOfFirstRecipe,indexOfLastRecipe)
+
+ const paged = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
@@ -125,24 +115,7 @@ return (
             <button className={s.btn} type= 'submit' onClick={updateProfile}>Search</button>
         </form>
         <div > 
-        <div className={s.filterBy}>Filter by:</div>
-        <button className={s.all} onClick={e => handleExit(e)}>All</button>
-        <div className={s.buttons}>
-
-{props.types && props.types.map((diet) =>(
-  <button className={s.dieta}  onClick={(e)=>handleClick(diet.title, e)}>{diet.title.charAt(0).toUpperCase()+ diet.title.slice(1)}</button>
-))
-}
-
-</div>
-
-        {/* <select  className={s.filter} onChange={(e) => handleFilter(e)}>
-          <option default>All</option>
-          {props.types.map((cat) => (
-            <option value={cat.title}>{cat.title}</option>
-          ))}
-        </select> */}
-      
+                <Filter />
                 <select className={s.select} onChange={(e) =>handleOrder(e)}>
                 <option value= '' disabled selected>Sort by</option>
                 <option value='asc'>Alphabet - A-Z</option>
@@ -167,13 +140,13 @@ return (
                     <div className={s.recipeList}>
                         <Link to = {`/recipe/${el.id}`} onClick={()=>props.getRecipeById(el.id)}>
                             <figure className={s.figure}>
-                       {el.image ? <img className={s.img} title={el.name} src={el.image}></img> : <img className={s.img} src='https://media.istockphoto.com/photos/vintage-cookbook-with-spices-and-herbs-on-rustic-wooden-background-picture-id1161153224?k=6&m=1161153224&s=612x612&w=0&h=vBK5KfbjpuBHE8XQQEbOXuyjYWLDYEKmJt07f1KgL5k=' ></img> }
+                       {el.image ? <img className={s.img} title={el.name} src={el.image}></img> : <img className={s.img} src={henry} ></img> }
                         <figcaption className={s.figcaption}>
                             {el.name}
                             <br/>
                             <div>
                             Diets:   
-                        {el.types && el.types.map((diet) => <div >{diet.title}</div>)}
+                        {el.types && el.types.map((diet) => <div >{diet.title.charAt(0).toUpperCase()+ diet.title.slice(1)}</div>)}
                             </div>
                             </figcaption>
                         </figure>   
@@ -201,6 +174,8 @@ function mapStateToProps(state){
         types: state.types,
         recipes: state.recipesSearch,
         filtered: state.filtered,
+        filterBy: state.filterBy,
+        filteredRecipes: state.filteredRecipes
     }
 }
 
@@ -214,7 +189,7 @@ function mapDispatchToProps(dispatch){
         orderByName: (string) => dispatch(orderByName(string)),
         orderByScore: (string) => dispatch (orderByScore(string)),
         getRecipeById: (id) => dispatch(getRecipeById(id)),
-        filterDiet:(string)=> dispatch(filterDiet(string))
+        
 
     }
 }

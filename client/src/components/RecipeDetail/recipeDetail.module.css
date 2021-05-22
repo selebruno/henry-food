@@ -8,6 +8,8 @@
     overflow: auto;
 }
 
+
+
 .title{
 display: flex;
 flex-direction: column;
@@ -23,6 +25,7 @@ margin-top: 45px;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    max-width: 1200px;
     color: whitesmoke;
     padding: 20px;
     margin-bottom: 40px;
@@ -59,9 +62,11 @@ margin-top: 45px;
 
 
 .scores{
+    position: absolute;
+    left: 45px;
+    top: 120px;
     display: inline-block;
     flex-direction: column;
-    position: relative;
     justify-content: center;
     align-items: center;
 }
@@ -77,9 +82,11 @@ margin-top: 45px;
 }
 
 .diets{
-    display: inline-block;
+    display: flex;
     flex-direction: column;
-    position: relative;
+    position: absolute;
+    left: 180px;
+    top: 140px;
     justify-content: center;
-    align-items: center;  
+    align-items:flex-start;  
 }

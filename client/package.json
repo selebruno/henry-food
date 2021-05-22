@@ -20,6 +20,9 @@
     "redux": "^4.1.0",
     "redux-thunk": "^2.3.0",
     "thunk": "^0.0.1",
+    "typeface-pattaya": "^1.1.13",
+    "typeface-poiret-one": "^1.1.13",
+    "typeface-quicksand": "^1.1.13",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

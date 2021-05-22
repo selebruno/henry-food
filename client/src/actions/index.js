@@ -1,4 +1,4 @@
-
+import {filterBy} from '../utils'
 
 
 export function getRecipesByName(name) {      //accion que me trae las recetas por nombre
@@ -71,6 +71,22 @@ export function filterDiet(payload) {
       payload: payload,
   };
 };
+export const filterDietTwo = (types) => (dispatch, getState) => {
+    let filteredDiets = [];
+  
+    if (types === "All") {
+      filteredDiets = getState().recipesSearch.slice();
+    } else {
+      filteredDiets = filterBy(getState().recipesSearch, types)
+    };
+    dispatch({
+      type: "FILTER_DIET_TWO",
+      payload: {
+        types,
+        filteredDiets: filteredDiets,
+      },
+    });
+  };
 export function orderByScore(payload) {         //accion que ordena por puntaje las recetas
     return {
         type: 'ORDER_BY_SCORE',

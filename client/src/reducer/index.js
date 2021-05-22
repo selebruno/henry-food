@@ -10,8 +10,10 @@ const initialState = {
     recipesSearch: [], //recetas por nombre 
     types: [],
     recipeById: [], //receta por id
-    filtered:' ',
-    loading: false
+    filtered: ' ',
+    loading: false,
+    filterBy: 'All',
+    filteredRecipes : [],
 
 
 };
@@ -39,13 +41,13 @@ function reducer(state = initialState, action) {
                 ...state,
                 submit: 'Recipe created Succesfully'
             }
-             case 'FILTER_DIET':
+            case 'FILTER_DIET':
                 return {
                     ...state,
-                    filtered:action.payload==='reset'? ' ': state.filtered+' | '+action.payload,
-                    recipesSearch:filterBy(state.recipesSearch, action.payload),
-                    };
-                  
+                    filtered: action.payload === 'reset' ? ' ' : state.filtered + ' | ' + action.payload,
+                        recipesSearch: filterBy(state.recipesSearch, action.payload),
+                };
+
 
             case 'SHOW_LOADER':
                 return {
@@ -75,12 +77,12 @@ function reducer(state = initialState, action) {
                                 sortDesc(state.recipesSearch, 'name');
                             return {
                                 ...state,
-                                recipesSearch: sortedArr
+                                filteredRecipes: sortedArr
                             }
                             case 'ORDER_BY_SCORE':
                                 return {
                                     ...state,
-                                    recipesSearch: state.recipesSearch.sort(function (a, b) {
+                                    filteredRecipes: state.filteredRecipes.sort(function (a, b) {
                                         if (action.payload === 'Lowest') {
                                             return a.score - b.score;
                                         }
@@ -89,6 +91,13 @@ function reducer(state = initialState, action) {
                                         }
                                     }),
                                 }
+                                case 'FILTER_DIET_TWO':
+
+                                    return {
+                                        ...state,
+                                        filteredRecipes: action.payload.filteredDiets,
+                                            filterBy: action.payload.types,
+                                    };
     }
     return state;
 }

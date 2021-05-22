@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import store from './store'
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
+import ('typeface-quicksand')
+import('typeface-pattaya')
 
 ReactDOM.render(
   <React.StrictMode>

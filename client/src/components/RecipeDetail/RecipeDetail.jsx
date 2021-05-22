@@ -4,6 +4,8 @@ import {Link} from 'react-router-dom'
 import {getRecipeById,resetAll} from '../../actions/index'
 import s from './recipeDetail.module.css'
 import {motion} from 'framer-motion'
+import henry from '../../HenryFood.jpeg'
+
 
 function RecipeDetail(props){
 
@@ -35,7 +37,7 @@ function RecipeDetail(props){
         <h1 className={s.title}>{props.recipe.name}</h1>
         <div className={s.info}>
         {props.recipe.image? <img  className={s.img} src={props.recipe.image}></img>:
-        <img src='https://i0.wp.com/www.eatthis.com/wp-content/uploads/2020/04/woman-cooking-healthy-food-in-kitchen.jpg?fit=1200%2C879&ssl=1'></img>}
+        <img src={henry}></img>}
         <div  className={s.scores}>
         <h4>Score:{props.recipe.score}</h4>
         <h4>Health Level:{props.recipe.healthLevel}</h4>
@@ -45,11 +47,12 @@ function RecipeDetail(props){
         <div dangerouslySetInnerHTML={{__html: props.recipe.summary}}></div>
         <h4>Instructions:</h4>
         <div dangerouslySetInnerHTML={{__html: props.recipe.steps}}></div>
-        </div>
+        
         <div  className={s.diets}>
         Diets: {props.recipe.types && props.recipe.types.map((type) =>(
-        type.title?<div>{type.title}</div>
-        :<div>{type}</div>))}
+        type.title? <div>{type.title.charAt(0).toUpperCase()+ type.title.slice(1)}</div>
+        :<div>{` ${type} `}</div>))}
+        </div>
         </div>
         </div>
         </div>
