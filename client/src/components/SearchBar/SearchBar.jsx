@@ -18,6 +18,23 @@ export  function SearchBar(props){
     const [input,setInput] = useState({
         name : ''
     })
+    
+    let allRecipes;
+
+    props.filterBy === "All" 
+      ? (allRecipes = props.recipes.slice())
+      : (allRecipes = props.filteredRecipes.slice());
+
+    const [render, setRender]= useState('');  
+    const [currentPage,setCurrentPage] = useState(1);
+    const [recipesPerPage,setRecipesPerPage]= useState(9);
+    const indexOfLastRecipe = currentPage * recipesPerPage; //9
+    const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage; //0
+    const currentRecipes = allRecipes.slice(indexOfFirstRecipe,indexOfLastRecipe)
+
+ const paged = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
    
 
 
@@ -62,22 +79,9 @@ function handleOrder (e){
     setRender(`Ordered ${e.target.value}`)
   };
 
-  let allRecipes;
+ 
 
-  props.filterBy === "All" 
-    ? (allRecipes = props.recipes.slice())
-    : (allRecipes = props.filteredRecipes.slice());
 
-const [render, setRender]= useState('');  
-const [currentPage,setCurrentPage] = useState(1);
-const [recipesPerPage,setRecipesPerPage]= useState(9);
-const indexOfLastRecipe = currentPage * recipesPerPage; //9
-const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage; //0
-const currentRecipes = allRecipes.slice(indexOfFirstRecipe,indexOfLastRecipe)
-
- const paged = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
 
   useEffect(() => {
     props.getTypes()
@@ -115,7 +119,7 @@ return (
             <button className={s.btn} type= 'submit' onClick={updateProfile}>Search</button>
         </form>
         <div > 
-                <Filter />
+                <Filter/>
                 <select className={s.select} onChange={(e) =>handleOrder(e)}>
                 <option value= '' disabled selected>Sort by</option>
                 <option value='asc'>Alphabet - A-Z</option>
@@ -138,7 +142,7 @@ return (
                      <img src = 'https://steamuserimages-a.akamaihd.net/ugc/883126835007225134/A09EFBB54E7A2724FC7D058955B4EB27C11B7CFD/'></img>
                     </div> :
                     <div className={s.recipeList}>
-                        <Link to = {`/recipe/${el.id}`} onClick={()=>props.getRecipeById(el.id)}>
+                        <Link className={s.removeLink} to = {`/recipe/${el.id}`} onClick={()=>props.getRecipeById(el.id)}>
                             <figure className={s.figure}>
                        {el.image ? <img className={s.img} title={el.name} src={el.image}></img> : <img className={s.img} src={henry} ></img> }
                         <figcaption className={s.figcaption}>
@@ -161,7 +165,7 @@ return (
     <div>
     <Paged
       recipesPerPage={recipesPerPage}
-      totalRecipes={props.recipes.length} 
+      totalRecipes={allRecipes.length} 
       paged={paged}
       />
     </div>

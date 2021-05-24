@@ -9,9 +9,6 @@ import henry from '../../HenryFood.jpeg'
 
 function RecipeDetail(props){
 
-    // function handleReset(){
-    //     props.resetAll()
-    // } 
     
     return(
         <motion.div
@@ -51,7 +48,7 @@ function RecipeDetail(props){
         <div  className={s.diets}>
         Diets: {props.recipe.types && props.recipe.types.map((type) =>(
         type.title? <div>{type.title.charAt(0).toUpperCase()+ type.title.slice(1)}</div>
-        :<div>{` ${type} `}</div>))}
+        :<div>{` ${type} `.charAt(1).toUpperCase()+ type.slice(1)}</div>))}
         </div>
         </div>
         </div>

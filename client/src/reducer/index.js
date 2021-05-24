@@ -10,7 +10,6 @@ const initialState = {
     recipesSearch: [], //recetas por nombre 
     types: [],
     recipeById: [], //receta por id
-    filtered: ' ',
     loading: false,
     filterBy: 'All',
     filteredRecipes : [],
@@ -23,7 +22,8 @@ function reducer(state = initialState, action) {
         case 'GET_RECIPES_BY_NAME':
             return {
                 ...state,
-                recipesSearch: action.payload.results
+                recipesSearch: action.payload.results,
+                filteredRecipes: action.payload.results
             };
         case 'GET_TYPES':
             return {
@@ -41,14 +41,6 @@ function reducer(state = initialState, action) {
                 ...state,
                 submit: 'Recipe created Succesfully'
             }
-            case 'FILTER_DIET':
-                return {
-                    ...state,
-                    filtered: action.payload === 'reset' ? ' ' : state.filtered + ' | ' + action.payload,
-                        recipesSearch: filterBy(state.recipesSearch, action.payload),
-                };
-
-
             case 'SHOW_LOADER':
                 return {
                     ...state,
@@ -73,8 +65,8 @@ function reducer(state = initialState, action) {
                         }
                         case 'ORDER_BY_NAME':
                             let sortedArr = action.payload === 'asc' ?
-                                sortAsc(state.recipesSearch, 'name') :
-                                sortDesc(state.recipesSearch, 'name');
+                                sortAsc(state.filteredRecipes, 'name') :
+                                sortDesc(state.filteredRecipes, 'name');
                             return {
                                 ...state,
                                 filteredRecipes: sortedArr
@@ -82,15 +74,17 @@ function reducer(state = initialState, action) {
                             case 'ORDER_BY_SCORE':
                                 return {
                                     ...state,
-                                    filteredRecipes: state.filteredRecipes.sort(function (a, b) {
+                                    filteredRecipes:  state.filteredRecipes.sort(function (a, b) {
                                         if (action.payload === 'Lowest') {
                                             return a.score - b.score;
                                         }
                                         if (action.payload === 'Highest') {
                                             return b.score - a.score;
-                                        }
-                                    }),
-                                }
+                                        } 
+                                    }), 
+                                } 
+        
+
                                 case 'FILTER_DIET_TWO':
 
                                     return {

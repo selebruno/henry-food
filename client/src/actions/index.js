@@ -65,12 +65,6 @@ export const resetAll = () => {
     }
 }
 
-export function filterDiet(payload) {
-  return { 
-      type: 'FILTER_DIET', 
-      payload: payload,
-  };
-};
 export const filterDietTwo = (types) => (dispatch, getState) => {
     let filteredDiets = [];
   
@@ -83,7 +77,7 @@ export const filterDietTwo = (types) => (dispatch, getState) => {
       type: "FILTER_DIET_TWO",
       payload: {
         types,
-        filteredDiets: filteredDiets,
+        filteredDiets: filteredDiets
       },
     });
   };

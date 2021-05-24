@@ -19,6 +19,7 @@ color: whitesmoke;
 text-shadow: black;
 padding: 10px;
 margin-top: 45px;
+margin-bottom: 35px;
 }
 .info{
     display: flex;
@@ -63,12 +64,16 @@ margin-top: 45px;
 
 .scores{
     position: absolute;
-    left: 45px;
-    top: 120px;
+    left: 30px;
+    top: 80px;
     display: inline-block;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: rgba(0, 0, 0, 0.158);
+    padding: 5px; 
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
 
@@ -79,14 +84,21 @@ margin-top: 45px;
     align-items: center;
     height: 250px;
     width: 300px;
+    margin-top: 35px;
 }
 
 .diets{
     display: flex;
     flex-direction: column;
     position: absolute;
-    left: 180px;
-    top: 140px;
+    right: 50px;
+    top: 70px;
+    color:rgb(255, 179, 65); ;
     justify-content: center;
-    align-items:flex-start;  
+    align-items:flex-end;
+    background-color: rgba(0, 0, 0, 0.356);
+    padding: 10px; 
+    border-radius: 10px;
+    margin-bottom: 20px;
+    margin-top: 25px;
 }

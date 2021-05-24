@@ -18,6 +18,9 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    text-decoration: none !important;
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
 }
 
 .loaderContainer{
@@ -34,19 +37,28 @@
     padding: 10px;
     justify-content: center;
     align-items: center;
+    text-decoration: none !important;
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
 }
 
 
 figure {
     display: table;
+    text-decoration: none !important;
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
 }
 
 img, figcaption {
     display: table-cell;
     vertical-align: top;
-    width: 200px;
+    width: 205px;
     height: 190px;
     border-radius: 10px;
+    text-decoration: none !important;
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
 }
 
 figcaption {
@@ -55,9 +67,17 @@ figcaption {
     background-color: rgba(0, 0, 0, 0.37);
     padding-left: 4px;
     text-indent: 200px each-line;
-    text-decoration: none;
+    text-decoration: none !important;
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
+    font-family: 'quicksand';
     color: whitesmoke;
     font-size: 15px;
+}
+
+.removeLink {
+    color: black;
+    text-decoration: none;
 }
 
 figure:hover{
@@ -69,6 +89,9 @@ figure:hover{
 	box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
 	transition: all 0.2s ease 0s;
     box-shadow: 0 0 5pt 0.5pt #161616;
+    text-decoration: none !important;
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
 }
 
 .loader{
@@ -97,6 +120,7 @@ figure:hover{
     font-weight: 800;
     font-size: 28px;
     margin-top: 0;
+    text-decoration: none !important
 }
 .form{
     padding: 15px;

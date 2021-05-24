@@ -55,6 +55,8 @@
 
     .inputUno{
         padding: 6px;
+        padding-left: 35px;
+        padding-right: 35px;
         border: none;
         border-radius: 5px;
         cursor:text;
@@ -82,6 +84,8 @@
 
     .inputDos{
         padding: 6px;
+        padding-left: 35px;
+        padding-right: 35px;
         border: none;
         border-radius: 5px;
         cursor:text;
@@ -109,6 +113,8 @@
 
     .inputTres{
         padding: 6px;
+        padding-left: 64px;
+        align-items: flex-start;
         border: none;
         border-radius: 5px;
         cursor:text;
@@ -136,6 +142,7 @@
 
     .inputCuatro{
         padding: 6px;
+        padding-left: 64px;
         border: none;
         border-radius: 5px;
         cursor: pointer;
@@ -166,6 +173,8 @@
 
     .inputCinco{
         padding: 6px;
+        padding-left: 20px;
+        padding-right: 20px;
         border: none;
         border-radius: 5px;
         cursor:text;
