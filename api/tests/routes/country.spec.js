@@ -14,11 +14,30 @@ describe('Recipe routes', () => {
   .catch((err) => {
     console.error('Unable to connect to the database:', err);
   }));
-  beforeEach(() => Recipe.sync({ force: true })
-    .then(() => Recipe.create(recipe)));
-  describe('GET /recipes', () => {
+  beforeEach(() => Recipe.sync({ force: false })
+    .then(() => Recipe.findOne({
+      where:{
+        name: recipe.name
+      }
+    })));
+  describe('GET /types', () => {
     it('should get 200', () =>
-      agent.get('/recipes').expect(200)
+      agent.get('/types').expect(200)
     );
   });
-});
+  
+    it('espera que sea json', function(){
+      return agent.get('/types')
+        .expect('Content-Type', /json/);
+    });
+  });
+
+  describe('GET /recipes/:idReceta', function () {
+    it('sends 404 when page does not exist', () => {
+      return agent.get('/recipes:idReceta/noexiste')
+        .expect(404);
+    });
+    
+  });
+
+  

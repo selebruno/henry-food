@@ -7,13 +7,14 @@ import {motion} from 'framer-motion';
 
 
 
-export function validate(input){   //hago la validacion de los scores
+export function validate(input){   
     if (input.score>100  || input.score<0){
         alert('Please insert a valid score');
     }
     if(!input.healthLevel>100 ||input.healthLevel<0){
        alert('Please insert a valid Health level')
     }
+    if (input.summary.length > 255) alert ('Summary is too long')
 };
 
 
@@ -147,7 +148,7 @@ function handleChange (e){
           <p className={s.diets}>
             Diets:
             <br/>
-            {props.types.length>0 && props.types.map((type)=>(
+            {props.types && props.types.map((type)=>(
               <label className={s.types}><input
               className={s.each} 
               type="checkbox" 
@@ -175,7 +176,6 @@ function handleChange (e){
 function mapStateToProps(state){
     return{
         types: state.types,
-        postRecipe: state.postedRecipe
     }
 }
 

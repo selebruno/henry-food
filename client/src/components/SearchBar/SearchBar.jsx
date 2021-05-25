@@ -19,11 +19,8 @@ export  function SearchBar(props){
         name : ''
     })
     
-    let allRecipes;
+    let allRecipes= props.filteredRecipes.slice();
 
-    props.filterBy === "All" 
-      ? (allRecipes = props.recipes.slice())
-      : (allRecipes = props.filteredRecipes.slice());
 
     const [render, setRender]= useState('');  
     const [currentPage,setCurrentPage] = useState(1);
@@ -139,7 +136,7 @@ return (
                     el.error? 
                     <div className={s.error}> 
                      <h2 className={s.title}>No recipes found</h2>
-                     <img src = 'https://steamuserimages-a.akamaihd.net/ugc/883126835007225134/A09EFBB54E7A2724FC7D058955B4EB27C11B7CFD/'></img>
+                     <img src = 'https://media2.giphy.com/media/UoAuNnMTUWNQ5CUuEU/source.gif'></img>
                     </div> :
                     <div className={s.recipeList}>
                         <Link className={s.removeLink} to = {`/recipe/${el.id}`} onClick={()=>props.getRecipeById(el.id)}>

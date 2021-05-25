@@ -7,15 +7,16 @@ describe('Recipe model', () => {
       console.error('Unable to connect to the database:', err);
     }));
   describe('Validators', () => {
-    beforeEach(() => Recipe.sync({ force: true }));
+    beforeEach(() => Recipe.sync({ force: false }));
     describe('name', () => {
-      it('should throw an error if name is null', (done) => {
-        Recipe.create({})
-          .then(() => done(new Error('It requires a valid name')))
-          .catch(() => done());
+      it('Should create new recipe called Food', () => {
+        Recipe.create({name: 'Food'})
       });
-      it('should work when its a valid name', () => {
-        Recipe.create({ name: 'Milanesa a la napolitana' });
+      it('Food recipe must be created', () => {
+        Recipe.findOne({
+          where:{
+            name: 'Food'
+          }  });
       });
     });
   });
