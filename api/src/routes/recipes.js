@@ -6,11 +6,11 @@ const axios = require ('axios')
 require('dotenv').config();
 const {API_KEY} = process.env;
 
-// HOY 11/5 TODO FUNCIONABA. LO UNICO QUE CAMBIE FUE EL NOMBRE DE LA FUNCION  INFOAPI SI SE ROMPE ES POR ESO.
+// HOY 11/5 TODO FUNCIONABA
  
 const infoApi = async () => {
     const allApiInfo = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${API_KEY}&number=1000`); 
-        //Busco la data y la devuelvo con las props que me interesan {}
+
         const infoNeeded= await allApiInfo.data.results.map((recipe) => {           
             return {
                 name: recipe.title,
@@ -19,7 +19,7 @@ const infoApi = async () => {
                 summary: recipe.summary,
                 image: recipe.image,
                 id: recipe.id,
-                score: parseInt(recipe.spoonacularScore), //porque la api me lo devuelve como string
+                score: parseInt(recipe.spoonacularScore),
                 steps: recipe.analyzedInstructions
             };
         });
@@ -28,7 +28,7 @@ const infoApi = async () => {
 
 };
 
- //router.get('/',(req,res,next)=>{                RUTAS PARA OBTENER TODO CON PROMESAS
+ //router.get('/',(req,res,next)=>{                
   //   const myRecipes = Recipe.findAll()
  //    const recipeApi =  axios.get(`https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&apiKey=${API_KEY}&number=100`);
  //    Promise.all([myRecipes,recipeApi])
@@ -47,10 +47,9 @@ const infoApi = async () => {
     if(req.query){
 
         try {
-            //BUSCA EN DB
             const results={};
             let query = req.query.name.toLowerCase();
-            const queryName = query[0].toUpperCase() + query.slice(1);//primera letra en mayuscula para buscar con todas las dietas
+            const queryName = query[0].toUpperCase() + query.slice(1);
 
             const filtroBd = await Recipe.findAll({
                 where:{
@@ -68,30 +67,29 @@ const infoApi = async () => {
                 },
 
             });
-            //CREA LA PROP RESULTS SI ENCONTRO ALGO
             if(filtroBd[0]){results['results']=filtroBd};        
             
-            //PARA FILTRAR LA DATA DEL AXIOS
+     
             const datas = await infoApi();
-            // console.log(datas)
+           
 
             const filtroApi= await datas.filter((dato) => dato.name.includes(queryName));
-            //SI SE ENCONTRO POR QUERY
+        
             if(filtroApi.length){
-                //ENCONTRO AXIOS PERO NO DE DB
+               
                 if(!results.results){
                     results['results']=filtroApi;
                     res.send(results);
-                }else{//AXIOS Y DB
+                }else{
                     results.results=results.results.concat(filtroApi);
                     res.send(results);
                 };
 
             }else{
-                //NO HAY DE AXIOS NI DE DB
+                
                 if(!results.results){
                     res.status(404).json({results:[{error:'No recipes found for this search.'}]})
-                }else{//NO HAY DE AXIOS PERO SI DE DB
+                }else{
                     res.json(results);
                 };
             };         

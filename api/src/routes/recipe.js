@@ -28,16 +28,16 @@ router.post("/", async (req, res) => {            //POST PARA CREAR NUEVAS RECET
         types = [types];
     };
     
-       //encuentro la data que coincide con la requerida por req.body
+      
     const typesDb = await Types.findAll({
       where: {
         title: {
-          [Sequelize.Op.in]: types//operador que el nombre coincida con el array
+          [Sequelize.Op.in]: types
         },
       },
   });
   
-  //las seteo
+ 
   await recipeCreated.setTypes(typesDb);
   res.status(200).json(recipeCreated);
 })

@@ -159,7 +159,7 @@ function handleChange (e){
             ))}
           </p>
           {render[0] &&
-          <div id='recipecreated'>{render}</div>
+          <div>{render}</div>
           }
           <input 
           className={s.boton} 
