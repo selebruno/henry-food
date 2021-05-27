@@ -55,7 +55,7 @@
 .slider img {
     border: rgba(255, 179, 65, 0.473);
     border-style: solid;
-    border-width: thick;
+    border-width: 3px;
     width: 312px;
     height: 231px; 
     object-fit: cover;
