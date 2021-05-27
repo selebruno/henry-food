@@ -70,7 +70,7 @@
 
 
 .slider ul {
-    animation: cambio 50s infinite ;
+    animation: cambio 55s infinite ;
     animation-direction: unset;
     animation-timing-function:linear;
 }
