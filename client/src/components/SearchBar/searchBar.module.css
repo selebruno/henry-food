@@ -1,6 +1,6 @@
 
 .bar{
-    background-Image: url('https://wallpapercave.com/wp/wp1955223.jpg');
+    background-Image: url('https://fondosmil.com/fondo/32027.jpg');
     background-position: fixed;
     background-repeat: no-repeat;
     background-size: cover;
@@ -10,7 +10,18 @@
     padding: 20px;
 }
 
+.featured{
+    color: rgb(255, 164, 28);
+    font-weight: 500;
+    font-family:'quicksand';
+    position: absolute;
+    font-size: 30px;
+    top: 120px;
+    left: 65px;
+}
+
 .recetas{
+    margin-top: 350px;
     list-style-type: none;
     width: 90%;
     display: flex;
@@ -53,7 +64,7 @@ figure {
 img, figcaption {
     display: table-cell;
     vertical-align: top;
-    width: 205px;
+    width: 215px;
     height: 190px;
     border-radius: 10px;
     text-decoration: none !important;
@@ -82,7 +93,8 @@ figcaption {
 
 figure:hover{
     letter-spacing: 0.5px;
-    background-color: rgba(0, 0, 0, 0.705);
+    background-color: rgba(255, 255, 255, 0.233);
+    border-radius: 10px;
     cursor: pointer;
 	-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
 	-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
@@ -262,7 +274,7 @@ figure:hover{
     text-decoration: none;
     color: rgb(255, 179, 65);
     padding: 8px;
-    background-color: rgba(0, 0, 0, 0.356);
+    background-color:rgba(214, 211, 205, 0.267);
     border-radius: 7px;
     
 }
@@ -270,29 +282,31 @@ figure:hover{
 .create:hover{
     font-size: 21px;
     letter-spacing: 1px;
-    transition: all 0.5s ease 0s;
+    background-color:rgba(214, 211, 205, 0.377);
+    transition: all 0.2s ease 0s;
 }
 .create:active{
-    background-color: rgba(0, 0, 0, 0.588);
+    background-color: rgba(255, 179, 65, 0.562);
 }
 
 .land{
+    margin-left: 15px;
     text-decoration: none;
     color: rgb(255, 179, 65);
     padding: 8px;
-    margin-left: 15px;
-    background-color: rgba(0, 0, 0, 0.356);
-     border-radius: 7px;
+    background-color:rgba(214, 211, 205, 0.267);
+    border-radius: 7px;
 }
 
 .land:hover{
     font-size: 21px;
     letter-spacing: 1px;
     transition: all 0.2s ease 0s;
+    background-color:rgba(214, 211, 205, 0.377);
 }
 
 .land:active{
-    background-color: rgba(0, 0, 0, 0.588);
+    background-color: rgba(255, 179, 65, 0.562);
 }
 
 .input{

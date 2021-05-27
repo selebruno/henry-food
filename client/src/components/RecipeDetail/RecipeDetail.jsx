@@ -36,8 +36,8 @@ function RecipeDetail(props){
         {props.recipe.image? <img  className={s.img} src={props.recipe.image}></img>:
         <img src={henry}></img>}
         <div  className={s.scores}>
-        <h4>Score:{props.recipe.score}</h4>
-        <h4>Health Level:{props.recipe.healthLevel}</h4>
+        {/* <h4>Score:{props.recipe.score}</h4> */}
+        {/* <h4>Health Level:{props.recipe.healthLevel}</h4> */}
         </div>
         <div  className={s.steps}>
             <h4>Summary:</h4>

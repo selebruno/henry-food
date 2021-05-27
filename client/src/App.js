@@ -7,6 +7,7 @@ import RecipeCreate from './components/RecipeCreate/RecipeCreate';
 import RecipeDetail from './components/RecipeDetail/RecipeDetail';
 import {AnimatePresence} from 'framer-motion'
 import SearchBar from './components/SearchBar/SearchBar';
+import SliderHomePage from './components/SliderHomePage/SliderHomePage'
 
 
 
@@ -17,6 +18,7 @@ function App() {
      <AnimatePresence>
      <Route exact path= '/' component={LandingPage}/>
      <Route  path= '/home' component={SearchBar}/>
+     <Route path="/home" component={SliderHomePage} />
      <Route  path= '/post' component={RecipeCreate}/>
      <Route  path= '/recipe/:id' component={RecipeDetail}/>
      </AnimatePresence>

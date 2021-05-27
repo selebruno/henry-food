@@ -107,6 +107,7 @@ return (
        }}
        >
        <div className= {s.bar}>  
+       <h4 className={s.featured}>Featured</h4>
         <form className={s.form} onSubmit={e => handleSubmit(e)}>
             <input className={s.input} type="text"
             className= {s.input}

@@ -1,0 +1,99 @@
+.slider {
+    position: absolute;
+    top:175px;
+    left:1.8%;
+	width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    height: 55vh;
+    padding: 0;
+	background: transparent;
+}
+
+  
+ 
+  .wrapper {
+    position: relative;
+    width: 322px;
+    height: 131px;
+  }
+  
+  .title {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 20px;
+    background: rgba(0, 0, 0, 0.486);
+    color: #fff;
+    visibility: hidden;
+    opacity: 0;
+  
+    transition: opacity .4s, visibility .4s;
+  }
+  
+  .wrapper:hover .title {
+    visibility: visible;
+    opacity: 1;
+  }
+
+.slider ul {
+    padding: 0; 
+    display: flex;
+    width: 700%;
+    height: 100px;
+}
+
+.slider li {
+    list-style: none;
+    width: 100%;
+	margin: 0;
+    display: flex;
+}
+
+.slider img {
+    border: rgba(255, 179, 65, 0.473);
+    border-style: solid;
+    border-width: thick;
+    width: 312px;
+    height: 231px; 
+    object-fit: cover;
+	box-shadow: 0 5px 10px rgba(0,0,0,0.8);
+}
+
+.slider img:hover{
+    border: rgb(255, 179, 65);
+    border-style: solid;
+    border-width: thick;
+}
+
+
+.slider ul {
+    animation: cambio 50s infinite ;
+    animation-direction: unset;
+    animation-timing-function:linear;
+}
+
+@keyframes cambio {
+    0% {margin-left:0;}
+    10% {margin-left:0;}
+
+    15% {margin-left:-100%;}
+    25% {margin-left:-100%;}
+
+    30% {margin-left:-200%;}
+    40% {margin-left:-200%;}
+
+    45% {margin-left:-300%;}
+    55% {margin-left:-300%;}
+
+    60% {margin-left:-400%;}
+    70% {margin-left:-400%;}
+
+    75% {margin-left:-500%;}
+    85% {margin-left:-500%;}
+
+    90% {margin-left:-600%;}
+    100% {margin-left:-600%;}
+}
