@@ -1,13 +1,14 @@
 .slider {
     position: absolute;
     top:175px;
-    left:1.8%;
+    left:1.9%;
 	width: 100%;
     margin: 0 auto;
     overflow: hidden;
     height: 55vh;
     padding: 0;
 	background: transparent;
+    overflow: hidden;
 }
 
   
