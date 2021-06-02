@@ -2,9 +2,27 @@ import s from './slider.module.css';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getRecipeById} from '../../actions'
+import {motion} from 'framer-motion'
 
 function SliderHomePage(props) {
   return (
+    <motion.div
+       initial='hidden'
+       animate='visible'
+       variants={{
+       hidden: {
+           scale: .8,
+           opacity: -1
+       },
+       visible: {
+           scale: 1,
+           opacity: 1,
+           transition:{
+               delay: .002
+           }
+       }
+       }}
+       >
     <div className={s.slider}>
       <ul>
         <li>
@@ -170,6 +188,7 @@ function SliderHomePage(props) {
         </li>
       </ul>
     </div>
+    </motion.div>
   );
 }
 
